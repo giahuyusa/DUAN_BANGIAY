@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giỏ Hàng</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Đặt lại CSS để đồng nhất giao diện */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f0f0f0;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      header {
+        background-color: peru;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+      }
+
+      header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h1 {
+        font-size: 2em;
+        margin: 0;
+        color: orange;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        left: 50px;
+        position: relative;
+      }
+
+      nav ul li {
+        position: relative;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 30px;
+        transition: background-color 0.3s, transform 0.3s;
+        font-size: 18px;
+        border: 3px dotted red;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        box-shadow: 5px 10px 10px black;
+      }
+
+      nav ul li a:hover {
+        background-color: #555;
+        transform: scale(1.05);
+      }
+
+      nav ul ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        display: none;
+        flex-direction: column;
+        background-color: #333;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      nav ul ul li a {
+        padding: 10px 15px;
+      }
+
+      nav ul li:hover > ul {
+        display: flex;
+      }
+
+      main {
+        padding: 20px;
+        text-align: center;
+      }
+
+      .cart-list {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: azure;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.3s, transform 0.3s;
+      }
+
+      .cart-list:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: scale(1.02);
+      }
+
+      .cart-item {
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      .cart-item:hover {
+        background-color: #f9f9f9;
+        transform: scale(1.02);
+      }
+
+      .cart-item h3 {
+        margin: 0;
+        font-size: 1.2em;
+      }
+
+      .cart-item p {
+        margin: 5px 0;
+        font-size: 0.9em;
+        color: #555;
+      }
+
+      .cart-item button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9em;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      .cart-item button:hover {
+        background-color: #c82333;
+        transform: scale(1.05);
+      }
+
+      .total {
+        font-size: 1.2em;
+        font-weight: bold;
+        text-align: right;
+        padding: 20px 0;
+      }
+
+      button.pay-button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        margin-top: 20px;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      button.pay-button:hover {
+        background-color: #c82333;
+        transform: scale(1.05);
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        padding: 40px 0;
+      }
+
+      .footer-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-section {
+        flex: 1;
+        min-width: 250px;
+        margin: 10px;
+      }
+
+      .footer-section h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 10px;
+      }
+
+      .footer-section p,
+      .footer-section ul {
+        margin-bottom: 10px;
+        line-height: 1.6;
+      }
+
+      .footer-section ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-section ul li a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-section ul li a:hover {
+        color: #0056b3;
+      }
+
+      .footer-section p {
+        color: #ccc;
+      }
+      
+      main {
+  padding: 30px;
+  text-align: center;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  margin: 30px auto;
+  max-width: 90%;
+  top: 100px;
+  position: relative;
+}
+
+main:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  transform: scale(1.01);
+}
+
+iframe {
+  width: 100%;
+  height: 600px;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+
+iframe:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  transform: scale(1.03);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+main, iframe {
+  animation: fadeIn 1s ease-in-out;
+}
+.info {
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .info h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            color: #1e90ff;
+        }
+
+        .info p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <h1>Cửa Hàng Giày Sneaker</h1>
+        <nav>
+          <ul>
+            <li><a href="trang_chu.html">Trang Chủ</a></li>
+            <li><a href="san_pham.html">Sản Phẩm</a></li>
+            <li><a href="gio_hang.html">Giỏ Hàng</a></li>
+            <li><a href="dang_nhap.html">Đăng Nhập</a></li>
+            <li><a href="dang_ky.html">Đăng Ký</a></li>
+            <li><a href="bando.html">Địa Chỉ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="info">
+        <h2>Chào Mừng Đến Với NTM Sneaker</h2>
+        <p>NTM Sneaker chuyên cung cấp các mẫu giày thể thao thời trang và chất lượng cao. Chúng tôi cam kết mang đến cho bạn những sản phẩm tốt nhất với dịch vụ chăm sóc khách hàng tận tâm.</p>
+        <p>Hãy đến thăm cửa hàng của chúng tôi tại địa chỉ trên bản đồ để khám phá nhiều mẫu giày đẹp mắt và hưởng ưu đãi hấp dẫn!</p>
+      </div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31349.01838114103!2d106.61025524139397!3d10.839807629797205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529e93550d8c5%3A0x49cf3b0fa443dc07!2sNTM%20Sneaker!5e0!3m2!1svi!2s!4v1722087252077!5m2!1svi!2s"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </main>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <footer>
+      <div class="footer-container">
+        <div class="footer-section about">
+          <h2>VỀ CHÚNG TÔI</h2>
+          <p>
+            Công ty TNHH MTV Thương Mại Thời Trang Tổng Hợp (GTF) Văn phòng: Số
+            163, Phan Đăng Lưu, Phường 01, Phú Nhuận, Hồ Chí Minh, Việt Nam
+          </p>
+        </div>
+        <div class="footer-section contact">
+          <h2>LIÊN HỆ</h2>
+          <p>
+            Địa chỉ kho: 14 Đường Phan Đăng Lưu, Khu phố 7, Phường Long Bình,
+            TP. Biên Hòa, Tỉnh Đồng Nai
+          </p>
+          <p>Tổng đài: 1900 63 64 01</p>
+          <p>
+            Mã số Doanh Nghiệp: 0314635071, đăng ký thay đổi ngày 20 tháng 04
+            năm 2020
+          </p>
+        </div>
+        <div class="footer-section links">
+          <h2>THÔNG TIN</h2>
+          <ul>
+            <li><a href="#">Giới thiệu</a></li>
+            <li><a href="#">Hệ thống cửa hàng</a></li>
+            <li><a href="#">Thông tin liên hệ</a></li>
+            <li><a href="#">Các điều khoản và điều kiện</a></li>
+          </ul>
+        </div>
+        <div class="footer-section support">
+          <h2>HỖ TRỢ KHÁCH HÀNG</h2>
+          <ul>
+            <li><a href="#">Chính sách giao hàng</a></li>
+            <li><a href="#">Chính sách đổi trả hàng - Bảo hành</a></li>
+            <li><a href="#">Chính sách trả góp</a></li>
+            <li><a href="#">Chính sách bảo mật</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

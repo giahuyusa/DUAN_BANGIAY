@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang Chủ</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      /* Đặt lại CSS để đồng nhất giao diện */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f0f0f0;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      /* Container chính */
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* Header và điều hướng */
+      header {
+        background-color: peru;
+        color: white;
+        padding: 20px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h1 {
+        font-size: 2em;
+        margin: 0;
+        color: black;
+        left: 2px;
+        position: relative;
+      }
+      header h1:hover {
+        color: white;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        left: 50px;
+        position: relative;
+      }
+
+      nav ul li {
+        margin: 0;
+        /* position: relative; */
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        font-size: 20px;
+        border: 3px dotted red;
+        border-radius: 30px;
+        box-shadow: 8px 5px 5px black;
+      }
+
+      nav ul li a:hover {
+        background-color: #555;
+      }
+
+      /* Hero Section */
+      .hero {
+        /* Thêm đường dẫn đến ảnh nền */
+
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 150px 20px;
+        position: relative;
+        height: 700px;
+      }
+      /*gggggg*/
+      .hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+      }
+
+      .anh slider img {
+        width: 100%;
+        position: absolute;
+      }
+
+      .hero h2,
+      .hero p,
+      .hero .button {
+        position: relative;
+        z-index: 2;
+        color: bisque;
+      }
+
+      .hero h2 {
+        font-size: 3em;
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+      }
+
+      .hero .button {
+        background-color: #007bff;
+        color: white;
+        padding: 15px 30px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1.2em;
+        border-radius: 30px;
+        box-shadow: 5px 8px 5px black;
+        transition: background-color 0.3s;
+      }
+      .hero .button:hover {
+        background-color: #0056b3;
+      }
+
+      /* Features Section */
+      .features {
+        background-color: white;
+        padding: 50px 20px;
+        margin-top: -50px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 5px 8px 5px black;
+        position: relative;
+        top: 85px;
+      }
+
+      .features h2 {
+        font-size: 2em;
+        margin-bottom: 40px;
+      }
+
+      .features .product-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+
+      .product-item {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        text-align: center;
+        width: calc(25% - 40px);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .product-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .product-item img {
+        max-width: 100%;
+        height: 200px;
+        border-radius: 5px;
+        object-fit: cover;
+      }
+
+      .product-item h3 {
+        font-size: 1.5em;
+        margin: 15px 0;
+        color: #007bff;
+      }
+
+      .product-item p {
+        font-size: 1em;
+        color: #666;
+        margin-bottom: 15px;
+        min-height: 50px; /* Đặt chiều cao tối thiểu để căn chỉnh */
+      }
+
+      .product-item button {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: auto; /* Đẩy nút xuống cuối */
+      }
+
+      .product-item button:hover {
+        background-color: #0056b3;
+      }
+
+      /* Footer */
+     /* Footer */
+     footer {
+  background-color: #222;
+  color: #fff; /* Đổi màu chữ thành trắng */
+  padding: 40px 20px;
+  border-top: 5px solid #007bff;
+}
+
+.footer-section {
+  background-color: #333;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.footer-section h2 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+}
+
+.footer-section p,
+.footer-section ul {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  color: #fff; /* Đổi màu liên kết thành trắng */
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+  color: #007bff; /* Màu sắc của liên kết khi hover */
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #1a1a1a;
+  color: #999;
+  font-size: 0.9em;
+  border-top: 1px solid #444;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+      .sale-form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between; /* Để các sản phẩm được căn giữa và cách nhau */
+      }
+
+      .product {
+        width: calc(
+          50% - 10px
+        ); /* Để hai sản phẩm hiển thị cạnh nhau, trừ đi khoảng cách giữa chúng */
+        margin-bottom: 20px; /* Khoảng cách dưới mỗi sản phẩm */
+        text-align: center;
+      }
+      h1 {
+        text-align: center;
+        font-weight: bold;
+        font-size: 40px;
+      }
+      .marquee-container {
+        width: 100%;
+        overflow: hidden;
+        background-color: #fff8f0;
+        border: 3px solid #ff5722; /* Đường viền dày hơn */
+        border-radius: 10px; /* Bo góc lớn hơn */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Đổ bóng mạnh hơn */
+        padding: 5px; /* Thêm padding bên ngoài container */
+      }
+
+      .marquee-content {
+        display: inline-block;
+        white-space: nowrap;
+        padding: 15px 30px; /* Tăng padding cho nội dung */
+        font-size: 24px; /* Tăng kích thước chữ */
+        color: #ff5722; /* Màu chữ nổi bật */
+        font-weight: bold;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Hiệu ứng đổ bóng chữ */
+        animation: marquee 20s linear infinite; /* Tăng thời gian cuộn */
+      }
+
+      @keyframes marquee {
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+
+      /* Hiệu ứng hover cho marquee */
+      .marquee-container:hover .marquee-content {
+        color: #fff; /* Đổi màu chữ khi hover */
+        background: peru; /* Đổi màu nền chữ khi hover */
+      }
+      .marquee-content {
+        font-family: "Oswald", sans-serif;
+      }
+      .slider {
+        position: relative;
+        width: 100%;
+        height: 650px; /* Đặt chiều cao cố định cho slider */
+        overflow: hidden; /* Đảm bảo phần dư của hình ảnh không hiển thị */
+      }
+
+      .slider img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Đảm bảo hình ảnh giữ tỷ lệ và không bị bể */
+      }
+      .slider-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5); /* Màu nền bán trong suốt */
+        color: bisque;
+        text-align: center;
+        padding: 150px 20px;
+        z-index: 1; /* Đảm bảo nội dung nằm trên hình ảnh */
+      }
+      .slider-content h2 {
+        font-size: 3em;
+        margin-bottom: 20px;
+      }
+
+      .slider-content p {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+      }
+      .slider-content .button {
+        background-color: #007bff;
+        color: white;
+        padding: 15px 30px;
+        text-decoration: none;
+        border-radius: 20px;
+        font-size: 1.2em;
+        box-shadow: 5px 8px 5px black;
+        transition: background-color 0.3s;
+      }
+
+      .slider-content .button:hover {
+        background-color: #0056b3;
+      }
+
+      .slider i {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 50px;
+        color: #fff;
+        padding: 10px;
+        background: rgba(255, 186, 186, 0.5);
+        cursor: pointer;
+        z-index: 2; /* Đảm bảo các nút điều hướng nằm trên nội dung */
+        display: none; /* Ẩn các nút điều hướng mặc định */
+      }
+      .slider:hover i {
+        display: block;
+      }
+      .slider .fa-less-than {
+        left: 10px;
+      }
+
+      .slider .fa-greater-than {
+        right: 10px;
+      }
+      .slider i {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 50px;
+        color: #fff;
+        padding: 5px;
+        background: rgba(255, 186, 186, 0.5);
+        cursor: pointer;
+        z-index: 2; /* Đảm bảo các nút điều hướng nằm trên overlay */
+      }
+
+      .slider .fa-less-than {
+        left: 10px;
+      }
+
+      .slider .fa-greater-than {
+        right: 10px;
+      }
+
+      input {
+        width: 5%;
+        outline: none;
+        border: 2px solid gray;
+        border-radius: 5px;
+      }
+
+      input:active {
+        background-color: #58bfbe;
+        color: #fff;
+      }
+      .features h2 {
+        font-size: 2em;
+        margin-bottom: 40px;
+        position: relative;
+      }
+
+      .features h2 .fa-shopping-cart {
+        font-size: 1.5em;
+        color: #007bff;
+        margin-left: 700px; /* Khoảng cách giữa tiêu đề và biểu tượng */
+        vertical-align: middle; /* Căn giữa biểu tượng với văn bản */
+        transition: color 0.3s;
+      }
+
+      .features h2 .fa-shopping-cart:hover {
+        color: #0056b3; /* Màu sắc của biểu tượng khi hover */
+      }
+      /*Điều chỉnh giỏ hàng năm qua phải  */
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body onload="loadsp()">
+    <header>
+      <div class="container" id="container">
+        <h1>Cửa Hàng Giày Sneaker</h1>
+        <nav>
+          <ul>
+            <!--load menu lên-->
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="slider">
+        <img src="/HinhAnh/anhnen.jpg" alt="" />
+        <div class="slider-content">
+          <h2>Cửa hàng giày Sandal&Sneaker</h2>
+          <p>Mua sắm những sản phẩm thời trang mới nhất và chất lượng nhất.</p>
+          <a href="san_pham.html" class="button">Mua Sắm Ngay</a>
+        </div>
+        <i class="fa-solid fa-less-than"></i>
+        <i class="fa-solid fa-greater-than"></i>
+      </div>
+
+      <div class="marquee-container">
+        <div class="marquee-content">
+          <p>
+            🎉 Chào mừng mùa lễ hội với chương trình khuyến mãi đặc biệt! Từ nay
+            đến hết tháng 8, giảm giá 30% cho tất cả các mẫu giày thời trang.
+            Đừng bỏ lỡ cơ hội sở hữu đôi giày yêu thích với giá ưu đãi nhất!
+          </p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="features">
+          <br />
+          <h2>
+            DANH MỤC NỔI BẬT
+            <a href="gio_hang.html" class="icon-link">
+  <i id="cart-icon" class="fas fa-shopping-cart"></i>
+</a>
+          </h2>
+          <div class="product-list" id="id">
+            <!--load lên đây-->
+          </div>
+        </div>
+      </div>
+    </main>
+    <br />
+    <div style="text-align: center">
+      <a href="/chi_tiet.html">
+        <button
+          style="
+            margin-top: 10px;
+            padding: 10px 150px;
+            font-size: 25px;
+            border-radius: 20px;
+            background-color: burlywood;
+          "
+        >
+          Xem thêm
+        </button></a
+      >
+    </div>
+    <br />
+    <br />
+    <br />
+    <div style="text-align: center">
+      <img src="/HinhAnh/sale.webp" alt="" style="display: inline-block" />
+    </div>
+    <br />
+    <h1>Món Hàng Giảm Giá</h1>
+    <div class="sale-form" id="sale-form">
+      <form>
+        <!--load dữ liệu lên đây-->
+      </form>
+    </div>
+    <br />
+    <div style="text-align: center">
+      <img src="/HinhAnh/ketluan.png" alt="" style="display: inline-block" />
+    </div>
+    <footer>
+      <div class="footer-container" id="footer-container">
+      
+        <!--load dữ liệu lên đây-->
+      </div>
+    </footer>
+    <script src="/load.js"></script>
+    <script src="/slider.js"></script>
+  </body>
+</html>

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Thiết lập định dạng cơ bản */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: peru;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin: 0;
+            color: black;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            text-align: center;
+            left: 50px;
+            position: relative;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-size: 20px;
+            border: 3px dotted red;
+            border-radius: 30px;
+            box-shadow: 8px 5px 5px black;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+        }
+
+        .login-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            margin: 50px auto;
+            /* Canh giữa form */
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-header h1 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        
+
+        
+
+        
+
+        
+
+        .icon {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #555;
+        }
+
+        .input-group input {
+            padding-left: 35px; /* Khoảng cách từ trái để cho icon vào bên trái */
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none; /* Ẩn thông báo lỗi theo mặc định */
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: orangered;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: red;
+        }
+
+        .footer-links {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .footer-links a {
+            color: blue;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: red;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin: 10px;
+        }
+
+        .footer-section h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        .footer-section p,
+        .footer-section ul {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #0056b3;
+        }
+
+        .footer-section p {
+            color: #ccc;
+        }
+        .error-message {
+    color: red; /* Màu chữ cho thông báo lỗi */
+    font-size: 14px; /* Kích thước chữ cho thông báo lỗi */
+    margin-top: 5px; /* Khoảng cách từ trên xuống dưới thông báo lỗi */
+    display: none; /* Ẩn thông báo lỗi theo mặc định */
+    font-weight: bold; /* Làm cho văn bản thông báo lỗi đậm hơn */
+}
+.input-group {
+    margin-bottom: 1em;
+    position: relative;
+}
+.input-wrapper {
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 16px;
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"],
+.input-group input[type="email"],
+.input-group input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    padding-left: 35px; /* Khoảng cách từ trái cho icon */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+    font-size: 16px;
+}
+
+.input-group input[type="text"]:focus,
+.input-group input[type="password"]:focus,
+.input-group input[type="email"]:focus,
+.input-group input[type="tel"]:focus {
+    border-color: #74ebd5;
+    outline: none;
+}
+
+.icon {
+    position: absolute;
+    top: 50%;
+    left: 10px; /* Vị trí icon từ trái */
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #555;
+    pointer-events: none; /* Đảm bảo icon không chiếm diện tích click */
+}
+.error-message {
+            color: red;
+            display: none;
+        }
+        .input-group {
+            margin-bottom: 1em;
+        }
+        .password-toggle {
+    position: relative;
+}
+
+.password-toggle input {
+    width: calc(100% - 30px); /* Để lại chỗ cho biểu tượng */
+    padding-right: 35px; /* Để lại khoảng trống cho icon */
+}
+
+.password-toggle i {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Khoảng cách từ phải */
+    transform: translateY(-50%);
+    font-size: 20px;
+    cursor: pointer;
+    color: #555;
+}
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Cửa Hàng Giày Sneaker</h1>
+            <nav>
+                <ul>
+                    <li><a href="trang_chu.html">Trang Chủ</a></li>
+                    <li><a href="san_pham.html">Sản Phẩm</a></li>
+                    <li><a href="gio_hang.html">Giỏ Hàng</a></li>
+                    <li><a href="dang_nhap.html">Đăng Nhập</a></li>
+                    <li><a href="dang_ky.html">Đăng Ký</a></li>
+                    <li><a href="bando.html">Địa Chỉ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="login-container">
+        <div class="login-header">
+            <h1 style="font-size: 40px;">Đăng ký</h1>
+        </div>
+        <form id="registration-form">
+            <div class="input-group">
+                <label for="username">Tên đăng nhập:</label>
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <input type="text" id="username">
+                <div id="username-error" class="error-message">Tên đăng nhập phải có ít nhất 3 ký tự</div>
+            </div>
+            <div class="input-group">
+                <label for="email">Email:</label>
+                <div class="icon"><i class="fas fa-envelope"></i></div>
+                <input type="email" id="email">
+                <div id="email-error" class="error-message">Email không hợp lệ. Vui lòng nhập đúng định dạng email</div>
+            </div>
+            <div class="input-group">
+                <label for="phone">Số điện thoại:</label>
+                <div class="icon"><i class="fas fa-phone"></i></div>
+                <input type="tel" id="phone">
+                <div id="phone-error" class="error-message">Số điện thoại không hợp lệ. Vui lòng nhập số điện thoại 10 chữ số</div>
+            </div>
+            <div class="input-group">
+                <label for="password">Mật khẩu:</label>
+                <div class="input-wrapper">
+                    <div class="icon-lock"><i class="fas fa-lock"></i></div>
+                    <input type="password" id="password">
+                    <div class="icon-eye"><i class="fas fa-eye" id="toggle-password"></i></div>
+                </div>
+                <div id="password-error" class="error-message">Mật khẩu phải có ít nhất 6 ký tự</div>
+            </div>
+            <div class="input-group">
+                <label for="confirm-password">Xác nhận mật khẩu:</label>
+                <div class="icon"><i class="fas fa-lock"></i></div>
+                <input type="password" id="confirm-password">
+                <div id="confirm-password-error" class="error-message">Mật khẩu xác nhận không khớp. Vui lòng nhập lại mật khẩu</div>
+            </div>
+            <button type="submit">Đăng ký</button>
+        </form>
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section about">
+                <h2>VỀ CHÚNG TÔI</h2>
+                <p>
+                    Công ty TNHH MTV Thương Mại Thời Trang Tổng Hợp (GTF) Văn phòng: Số
+                    163, Phan Đăng Lưu, Phường 01, Phú Nhuận, Hồ Chí Minh, Việt Nam
+                </p>
+            </div>
+            <div class="footer-section contact">
+                <h2>LIÊN HỆ</h2>
+                <p>
+                    Địa chỉ kho: 14 Đường Phan Đăng Lưu, Khu phố 7, Phường Long Bình,
+                    TP. Biên Hòa, Tỉnh Đồng Nai
+                </p>
+                <p>Tổng đài: 1900 63 64 01</p>
+                <p>
+                    Mã số Doanh Nghiệp: 0314635071, đăng ký thay đổi ngày 20 tháng 04
+                    năm 2020
+                </p>
+            </div>
+            <div class="footer-section links">
+                <h2>THÔNG TIN</h2>
+                <ul>
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#">Hệ thống cửa hàng</a></li>
+                    <li><a href="#">Thông tin liên hệ</a></li>
+                    <li><a href="#">Các điều khoản và điều kiện</a></li>
+                </ul>
+            </div>
+            <div class="footer-section support">
+                <h2>HỖ TRỢ KHÁCH HÀNG</h2>
+                <ul>
+                    <li><a href="#">Chính sách giao hàng</a></li>
+                    <li><a href="#">Chính sách đổi trả hàng - Bảo hành</a></li>
+                    <li><a href="#">Chính sách trả góp</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
+<script>
+ const form = document.getElementById('registration-form');
+
+form.addEventListener('submit', (event) => { //kiểm tra biểu mẫu khi người dùng nhấn nút gửi
+    let isValid = true;
+
+    // Xóa tất cả thông báo lỗi trước khi kiểm tra
+    const errorMessages = document.querySelectorAll('.error-message');
+    for (let i = 0; i < errorMessages.length; i++) {
+        errorMessages[i].style.display = 'none';
+    }
+
+    // Kiểm tra tên đăng nhập
+const username = document.getElementById('username').value.trim();
+const usernameError = document.getElementById('username-error');
+
+// Biểu thức chính quy để kiểm tra ký tự đặc biệt và số
+// Cho phép khoảng trắng, bắt đầu bằng chữ cái, chứa chữ cái, số và khoảng trắng
+const usernamePattern = /^[a-zA-Z][a-zA-Z0-9 ]*$/;
+
+if (username.length < 3) { // Tên đăng nhập phải ít nhất 3 ký tự
+    usernameError.textContent = 'Tên đăng nhập phải có ít nhất 3 ký tự';
+    usernameError.style.display = 'block';
+    isValid = false;
+} else if (!usernamePattern.test(username)) { // Kiểm tra ký tự đặc biệt và số
+    usernameError.textContent = 'Tên đăng nhập chỉ được chứa chữ cái, số và khoảng trắng, và phải bắt đầu bằng chữ cái';
+    usernameError.style.display = 'block';
+    isValid = false;
+} else {
+    usernameError.textContent = '';
+    usernameError.style.display = 'none';
+}
+
+
+    // Kiểm tra email
+    const email = document.getElementById('email').value;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        document.getElementById('email-error').textContent = 'Email không hợp lệ. Vui lòng nhập đúng định dạng email';
+        document.getElementById('email-error').style.display = 'block';
+        isValid = false;
+    }
+
+    // Kiểm tra số điện thoại
+    const phone = document.getElementById('phone').value;
+const phonePattern = /^0[0-9]{9}$/; // Đúng định dạng 10 chữ số bắt đầu bằng 0
+const noSpecialChars = /^[0-9]+$/; // Chỉ chứa chữ số
+
+if (!noSpecialChars.test(phone)) {
+    document.getElementById('phone-error').textContent = 'Số điện thoại không được chứa ký tự đặc biệt hoặc khoảng trắng.';
+    document.getElementById('phone-error').style.display = 'block';
+    isValid = false;
+} else if (!phonePattern.test(phone)) {
+    document.getElementById('phone-error').textContent = 'Số điện thoại phải bắt đầu bằng số 0 và có đúng 10 chữ số.';
+    document.getElementById('phone-error').style.display = 'block';
+    isValid = false;
+} else {
+    document.getElementById('phone-error').style.display = 'none';
+    isValid = true;
+}
+
+
+    // Kiểm tra mật khẩu
+    const password = document.getElementById('password').value;
+
+// Các mẫu kiểm tra
+const minLength = 8;
+const hasUpperCase = /[A-Z]/;
+const hasLowerCase = /[a-z]/;
+const hasDigit = /[0-9]/;
+const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/;
+const noSpaces = /^\S*$/; // Không chứa khoảng trắng
+const easyPasswords = /password|123456|qwerty/i; // Danh sách mật khẩu dễ đoán
+
+let errorMessage = '';
+
+if (password.length < minLength) {
+    errorMessage = `Mật khẩu phải có ít nhất ${minLength} ký tự.`;
+} else if (!hasUpperCase.test(password)) {
+    errorMessage = 'Mật khẩu phải chứa ít nhất một chữ cái viết hoa.';
+} else if (!hasLowerCase.test(password)) {
+    errorMessage = 'Mật khẩu phải chứa ít nhất một chữ cái viết thường.';
+} else if (!hasDigit.test(password)) {
+    errorMessage = 'Mật khẩu phải chứa ít nhất một chữ số.';
+} else if (!hasSpecialChar.test(password)) {
+    errorMessage = 'Mật khẩu phải chứa ít nhất một ký tự đặc biệt.';
+} else if (!noSpaces.test(password)) {
+    errorMessage = 'Mật khẩu không được chứa khoảng trắng.';
+} else if (easyPasswords.test(password)) {
+    errorMessage = 'Mật khẩu quá dễ đoán. Vui lòng chọn mật khẩu khác.';
+} 
+
+if (errorMessage) {
+    document.getElementById('password-error').textContent = errorMessage;
+    document.getElementById('password-error').style.display = 'block';
+    isValid = false;
+} else {
+    document.getElementById('password-error').style.display = 'none';
+    isValid = true;
+}
+
+
+    // Kiểm tra xác nhận mật khẩu
+    const confirmPassword = document.getElementById('confirm-password').value;
+    if (password !== confirmPassword) {
+        document.getElementById('confirm-password-error').textContent = 'Mật khẩu xác nhận không khớp. Vui lòng nhập lại mật khẩu';
+        document.getElementById('confirm-password-error').style.display = 'block';
+        isValid = false;
+    }
+
+    // Ngăn chặn gửi form nếu có lỗi
+    if (!isValid) {
+        event.preventDefault();
+    }
+});
+
+// Ẩn thông báo lỗi khi người dùng nhập lại thông tin
+const inputs = document.querySelectorAll('.input-group input');
+for (let i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener('input', () => {
+        const errorMsg = document.getElementById(inputs[i].id + '-error');
+        if (errorMsg) {
+            errorMsg.style.display = 'none';
+        }
+    });
+}
+
+
+//
+document.addEventListener('DOMContentLoaded', function () {
+    const togglePassword = document.getElementById('toggle-password');
+    const passwordInput = document.getElementById('password');
+
+    togglePassword.addEventListener('click', function () {
+        // Kiểm tra loại của trường nhập liệu và thay đổi nó
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';  //hiện mật khẩu dươi dạng văn bảng
+            togglePassword.classList.remove('fa-eye');
+            togglePassword.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            togglePassword.classList.remove('fa-eye-slash');
+            togglePassword.classList.add('fa-eye');
+        }
+    });
+});
+</script>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang Báo Điện Tử</title>
+    <style>
+      /* Reset mặc định */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Header */
+      .header {
+        background-color: #f8f8f8;
+        padding: 10px 0;
+        text-align: center;
+      }
+
+      .logo img {
+        max-width: 300px;
+      }
+      .logo {
+        background-color: white;
+      }
+
+      /* Navigation */
+      .navbar {
+        background-color: darkcyan;
+        padding: 10px 0;
+        height: 60px;
+      }
+
+      .navbar ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        text-decoration: none;
+      }
+
+      .navbar ul li {
+        margin: 0 15px;
+      }
+
+      .navbar ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: x-large;
+      }
+
+      .navbar ul li a:hover {
+        text-decoration: underline;
+      }
+
+      /* Main Content */
+      .main-content {
+        display: flex;
+        padding: 20px;
+        max-width: 12090px; /* Điều chỉnh theo nhu cầu */
+        margin: 0 auto;
+        gap: 20px;
+      }
+
+      /* Bên trái - Bài viết chính */
+      .content-left {
+        flex: 3; /* Mở rộng bên trái */
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 30px;
+        box-shadow: 8px 8px 8px black;
+        font-size: 25px;
+      }
+
+      /* Bên phải - Tin nổi bật */
+      .content-right {
+        flex: 1; /* Mở rộng bên phải */
+        background-color: #f8f8f8;
+        padding: 20px;
+        border-radius: 30px;
+        box-shadow: 8px 8px 8px black;
+      }
+
+      /* Tin nổi bật */
+      .content-right ul {
+        list-style: none;
+      }
+
+      .content-right ul li {
+        margin-bottom: 10px;
+      }
+
+      .content-right ul li a {
+        color: #333;
+        text-decoration: none;
+      }
+
+      .content-right ul li a:hover {
+        text-decoration: underline;
+      }
+      .sidebar a {
+        text-decoration: none; /* Loại bỏ gạch dưới */
+        color: inherit; /* Giữ nguyên màu sắc của liên kết */
+      }
+      .box input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 14px;
+      }
+      .sidebar {
+        border-radius: 20px;
+
+        font-size: x-large;
+      }
+      .box {
+        margin-bottom: 20px;
+        padding: 15px;
+        margin: 30px;
+        background-color: #d1e7dd;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .sidebar {
+        flex: 1;
+        padding: 20px;
+        background-color: #e6f7ff;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      footer {
+  background-color: #2c3e50; /* Màu nền footer */
+  color: white; /* Màu chữ */
+  padding: 20px 0; /* Khoảng cách bên trên và dưới */
+}
+
+.footer-container {
+  display: flex; /* Sử dụng flexbox để bố trí các phần footer */
+  justify-content: space-between; /* Căn giữa các phần */
+  max-width: 1200px; /* Độ rộng tối đa của footer */
+  margin: 0 auto; /* Căn giữa footer */
+  padding: 0 20px; /* Khoảng cách bên trái và phải */
+}
+
+.footer-section {
+  flex: 1; /* Các phần đều có độ rộng như nhau */
+  padding: 0 15px; /* Khoảng cách bên trái và phải cho mỗi phần */
+}
+
+.footer-logo {
+  max-width: 100%; /* Đảm bảo logo không vượt quá chiều rộng của phần chứa */
+  height: auto; /* Tự động điều chỉnh chiều cao */
+}
+
+.footer-links {
+  display: flex; /* Sử dụng flexbox cho các liên kết */
+  justify-content: center; /* Căn giữa các liên kết */
+  flex-wrap: wrap; /* Cho phép các liên kết xuống dòng nếu không đủ chỗ */
+  margin-top: 20px; /* Khoảng cách trên của các liên kết */
+}
+
+.footer-links a {
+  color: white; /* Màu chữ liên kết */
+  text-decoration: none; /* Không có gạch chân */
+  margin: 0 15px; /* Khoảng cách giữa các liên kết */
+}
+
+.footer-links a:hover {
+  text-decoration: underline; /* Gạch chân khi hover */
+}
+.marquee {
+            width: 90%;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            white-space: nowrap;
+            font-weight: bold;
+        }
+
+        .marquee span {
+            display: inline-block;
+            font-size: 400px; /* Kích thước chữ to hơn */
+            font-weight: bold;
+            padding-left: 100%;
+            animation: marquee 10s linear infinite;
+            color: #ffcc00; /* Màu chữ vàng */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Bóng chữ */
+            
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+    </style>
+  </head>
+  <body>
+    <!-- Logo -->
+    <header class="header">
+      <div class="logo">
+        <img
+          src="https://tse3.mm.bing.net/th?id=OIP.T1opbscAPieq-sI8ioj6FQHaCl&pid=Api&P=0&h=180"
+          alt="Logo Trang Báo"
+        />
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <ul>
+        <li><a href="#">Trang chủ</a></li>
+        <li><a href="#">Văn Hóa</a></li>
+        <li><a href="#">Pháp Luật</a></li>
+        <li><a href="#">Thể thao</a></li>
+        <li><a href="#">Giải trí</a></li>
+      </ul>
+    </nav>
+    <marquee behavior="scroll" direction="left"> <span>
+      🔴 Tin Nóng: Bão số 3 đổ bộ vào miền Trung gây thiệt hại nặng nề. 
+      | 📰 Kinh Tế: Thị trường chứng khoán tăng điểm, nhà đầu tư kỳ vọng vào gói hỗ trợ mới. 
+      | 🎥 Giải Trí: Phim bom tấn "Người Nhện" lập kỷ lục doanh thu phòng vé. 
+      | ⚽ Thể Thao: Đội tuyển Việt Nam giành chiến thắng kịch tính 2-1 trước Thái Lan. 
+      | 🌍 Quốc Tế: Hội nghị thượng đỉnh G20 bàn thảo giải pháp phục hồi kinh tế toàn cầu.
+  </span></marquee>
+    <!-- Nội dung chính -->
+    <div class="main-content">
+      <!-- Bên trái -->
+      <div class="content-left">
+        <h2>Cập nhật tin tức bóng đá mới nhất</h2> <br>
+       
+        <img src="https://icdn.24h.com.vn/upload/3-2024/images/2024-09-28//7-495-1727526110-53-width740height495.jpg"alt="left" width="400px" align="left" style="margin-right: 15px;"/>
+    Bóng đá luôn là một trong những môn thể thao được yêu thích nhất trên toàn thế giới, và năm 2024 không phải là ngoại lệ. Năm nay, các giải đấu lớn như UEFA Champions League, Premier League và World Cup 2026 đang diễn ra sôi động, thu hút sự quan tâm của hàng triệu người hâm mộ.
+    Trong khuôn khổ UEFA Champions League, các đội bóng hàng đầu như Real Madrid, Barcelona và Manchester City đang cạnh tranh quyết liệt để giành suất vào vòng knock-out. Với những màn trình diễn ấn tượng từ các ngôi sao như Erling Haaland và Kylian Mbappé, các trận đấu trở nên kịch tính và khó đoán hơn bao giờ hết.
+    Tại Premier League, Manchester United đang tìm cách trở lại vị thế hàng đầu sau một mùa giải không như ý. Dưới sự dẫn dắt của huấn luyện viên mới, đội bóng đang nỗ lực để thu hẹp khoảng cách với các đối thủ lớn như Liverpool và Chelsea. Trong khi đó, Arsenal và Tottenham cũng đang có những bước tiến mạnh mẽ, hứa hẹn sẽ tạo nên những trận derby hấp dẫn trong mùa giải này.
+    Còn ở cấp độ quốc tế, World Cup 2026 sắp tới đang khiến người hâm mộ phấn khích. Năm nay, giải đấu sẽ được tổ chức tại ba quốc gia: Mỹ, Canada và Mexico. Đội tuyển Brazil, với lực lượng hùng mạnh và phong độ ổn định, được xem là một trong những ứng cử viên hàng đầu cho chức vô địch.
+    Nhìn chung, bóng đá năm 2024 đang diễn ra rất sôi động và hứa hẹn nhiều bất ngờ. Hãy cùng theo dõi và chờ đợi những trận đấu hấp dẫn phía trước! <BR></BR>
+  </p>
+
+
+    <h2>Cập nhật tin tức bão YAGI mới nhất</h2> <br>
+<img src="https://tse1.mm.bing.net/th?id=OIP.y3ajki0XTvMTgjtU21WaOAHaE7&pid=Api&P=0&h=180" alt="left" width="400px" align="left" style="margin-right: 15px;"/>
+
+            Bão số 3 Yagi gây thiệt hại kinh tế ước tính ban đầu lên tới 81.503 tỷ đồng. Bộ trưởng Lê Minh Hoan nhấn mạnh, con số thiệt hại vẫn đang được các địa phương tiếp tục rà soát, đánh giá và cập nhật.
+            Thiệt hại nặng nền
+            Ngày 28/9, báo cáo tại hội nghị sơ kết đánh giá, rút kinh nghiệm về công tác phòng chống và khắc phục hậu quả bão Yagi, Bộ trưởng NN-PTNT Lê Minh Hoan, thông tin, ngày 7/9, bão Yagi với sức gió lúc đổ bộ Quảng Ninh - Hải Phòng cấp 12-14 và mưa lớn toàn miền Bắc sau bão khiến 344 người chết và mất tích.
+            Bão lũ làm 281.966 ngôi nhà bị hư hỏng và tốc mái, 112.034 nhà bị ngập. 14 sự cố đường dây 500 kV và nhiều sự cố khác khiến hơn 6 triệu khách hàng bị mất điện, trong đó có hơn 430 khu công nghiệp, cụm công nghiệp.
+            Ngoài ra, có 284.472ha lúa bị ngập úng, thiệt hại; 61.114ha hoa màu bị ngập úng, thiệt hại; 39.188ha cây ăn quả bị hư hại; 189.982ha rừng bị gãy đổ; 35.029ha và 11.832 lồng bè nuôi trồng thuỷ sản bị hư hỏng, cuốn trôi; 44.174 con gia súc và 5,6 triệu con gia cầm bị chết.
+            Bộ trưởng dẫn số liệu thống kê cập nhật đến ngày 27/9, Quảng Ninh là tỉnh bị thiệt hại nặng nhất, lên tới 24.876 tỷ đồng; Hải Phòng 12.249 tỷ đồng; Lào Cai 6.687 tỷ đồng; Yên Bái 5.738 tỷ đồng; Hoà Bình 1.065 tỷ đồng; Bắc Giang 5.000 tỷ đồng; Hải Dương 7.498 tỷ đồng; Hưng Yên 3.637 tỷ đồng... Trong đó, riêng sản xuất nông nghiệp thiệt hại hơn 30.800 tỷ đồng. <br> <br>
+           
+           
+            <h2>Cập nhật tin tức về khu Công Nghiệp sắp ra mắt</h2> <br>
+            <img src="https://images2.thanhnien.vn/thumb_w/640/528068263637045248/2024/9/28/tp-quy-nhon-17275184806491472954352.jpg" alt="left" width="400px" align="left" style="margin-right: 15px;">
+            <p>
+                Theo đó, Cụm công nghiệp Tà Súc được đầu tư xây dựng hạ tầng kỹ thuật trên toàn bộ diện tích đất quy hoạch 35 ha với tổng mức đầu tư 187,7 tỉ đồng. Cụm công nghiệp Bùi Thị Xuân (phần mở rộng) có tổng mức đầu tư hơn 85 tỉ đồng, với diện tích 18,3 ha.
+            </p>
+                Các cụm công nghiệp mới được kỳ vọng sẽ thu hút nhiều doanh nghiệp vừa và nhỏ, hợp tác xã và các cơ sở sản xuất. Đặc biệt, ưu tiên cho các doanh nghiệp di dời từ những khu vực lân cận ở TP.Quy Nhơn hoặc những doanh nghiệp, cơ sở sản xuất gây ô nhiễm hoặc có nguy cơ gây ô nhiễm đang nằm trong khu dân cư ở H.Vĩnh Thạnh.
+                <p>
+                Lãnh đạo UBND tỉnh Bình Định cho biết, việc phát triển thêm các cụm công nghiệp này nhằm tạo ra cơ hội việc làm cho lao động địa phương, nâng cao thu nhập và cải thiện đời sống người dân, thúc đẩy kinh tế địa phương phát triển.
+                </p>
+                
+        </div> <br>
+
+      <!-- Bên phải -->
+      <div class="content-right">
+        <div class="sidebar">
+          <h3>Tin nổi bật</h3>
+          <div class="box">
+            <a href="">5 bản tin được xem nhiều nhất</a>
+          </div>
+          <div class="box">
+            <a href="">5 bản tin mới nhất</a>
+          </div>
+          <div class="box">
+            <a href="">5 bản tin bạn đã xem</a>
+          </div>
+          <div class="box">
+            <label for="newsletter">Newsletter</label>
+            <input
+              type="text"
+              id="newsletter"
+              placeholder="Nhập email của bạn..."
+            />
+          </div>
+          
+          <div>
+            <h2 style="text-align: center">Video bão YAGI</h2>
+            <iframe width="450px"  src="https://www.youtube.com/embed/lQs2hvjgMq0?si=AklywG6wLcstVI2D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <br>
+         
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>TRỤ SỞ HÀ NỘI</h3>
+          <p>Địa chỉ: Số 123, Đường ABC, Quận XYZ, Hà Nội</p>
+          <p>Điện thoại: 0123 456 789</p>
+          <p>Fax: 0123 456 789</p>
+          <p>Email: example@domain.com</p>
+        </div>
+        <div class="footer-section">
+          <h3>CÔNG TY CỔ PHẦN QUẢNG CÁO TRUYỀN THÔNG 24H</h3>
+          <p>Slogan của công ty: "Tin tức nhanh chóng, chính xác."</p>
+          <img src="https://icdn.24h.com.vn/images/img_home_listing/footer-24h.png" alt="Logo" class="footer-logo" />
+        </div>
+        <div class="footer-section">
+          <h3>CHI NHÁNH TP.HCM</h3>
+          <p>Địa chỉ: Số 456, Đường DEF, Quận UVW, TP.HCM</p>
+          <p>Điện thoại: 0987 654 321</p>
+          <p>Fax: 0987 654 321</p>
+          <p>Email: example@domain.com</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="#">LIÊN HỆ QUẢNG CÁO</a>
+        <a href="#">GIỚI THIỆU</a>
+        <a href="#">GÓP Ý</a>
+        <a href="#">CHÍNH SÁCH BẢO MẬT</a>
+        <a href="#">ĐIỀU KHOẢN SỬ DỤNG</a>
+      </div>
+    </footer>
+    
+  </body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giỏ Hàng</title>
+    <link rel="stylesheet" href="styles.css" />
+   
+    <script>
+         window.onload = function() {
+    loadCart();
+  };
+
+  function loadCart() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    let cartContent = `
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Ảnh</th>
+            <th>Tên Sản Phẩm</th>
+            <th>Số Lượng</th>
+            <th>Giá Tiền</th>
+            <th>Chức Năng</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+
+    for (let i = 0; i < cart.length; i++) {
+      const product = cart[i];
+      cartContent += `
+        <tr>
+          <td><img src="/HinhAnh/${product.img}" style="width: 80px; height: 80px;"></td>
+          <td>${product.name}</td>
+          <td>
+            <input type="number" value="${product.quantity}" min="1" onchange="updateQuantity(${i}, this.value)">
+          </td>
+          <td>${product.price}</td>
+          <td><button onclick="removeFromCart(${i})">Xóa</button></td>
+        </tr>
+      `;
+    }
+
+    cartContent += `
+      </tbody>
+      </table>
+      <div class="total">Tổng tiền: <span id="total-price">0 VNĐ</span></div>
+      <a href="dathang2.html" class="pay-button" onclick="toggleOrderForm()">Đặt Hàng</a>
+    `;
+
+    document.getElementById('cart-container').innerHTML = cartContent;
+    updateTotalPrice();
+  }
+
+  function removeFromCart(index) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    loadCart();
+  }
+
+  function updateQuantity(index, newQuantity) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart[index].quantity = parseInt(newQuantity, 10);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    loadCart();
+  }
+
+  function updateTotalPrice() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let total = 0;
+    for (let i = 0; i < cart.length; i++) {
+      let price = parseInt(cart[i].price.replace(/[^0-9]/g, ''), 10);
+      total += price * cart[i].quantity;
+    }
+    document.getElementById('total-price').innerText = total.toLocaleString() + ' VNĐ';
+  }
+
+  
+
+    </script>
+    
+    <style>
+       
+
+
+
+      .cart-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .cart-table th,
+      .cart-table td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: center;
+      }
+
+      .cart-table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+      }
+
+      .cart-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      .cart-table img {
+        width: 80px;
+        height: 80px;
+      }
+
+      .cart-table button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9em;
+      }
+
+      .cart-table button:hover {
+        background-color: #c82333;
+      }
+      
+      /* Đặt lại CSS để đồng nhất giao diện */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f0f0f0;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      header {
+        background-color: peru;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+      }
+
+      header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h1 {
+        font-size: 2em;
+        margin: 0;
+        color: orange;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+      }
+
+      nav ul li {
+        position: relative;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 30px;
+        transition: background-color 0.3s, transform 0.3s;
+        font-size: 18px;
+        border: 3px dotted red;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        box-shadow: 5px 10px 10px black;
+      }
+
+      nav ul li a:hover {
+        background-color: #555;
+        transform: scale(1.05);
+      }
+
+      nav ul ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        display: none;
+        flex-direction: column;
+        background-color: #333;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      nav ul ul li a {
+        padding: 10px 15px;
+      }
+
+      nav ul li:hover > ul {
+        display: flex;
+      }
+
+      main {
+        padding: 20px;
+        text-align: center;
+      }
+
+      .cart-list {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: azure;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.3s, transform 0.3s;
+      }
+
+      .cart-list:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: scale(1.02);
+      }
+
+      .cart-item {
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      .cart-item:hover {
+        background-color: #f9f9f9;
+        transform: scale(1.02);
+      }
+
+      .cart-item h3 {
+        margin: 0;
+        font-size: 1.2em;
+      }
+
+      .cart-item p {
+        margin: 5px 0;
+        font-size: 0.9em;
+        color: #555;
+      }
+
+      .cart-item button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9em;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      .cart-item button:hover {
+        background-color: #c82333;
+        transform: scale(1.05);
+      }
+
+      .total {
+        font-size: 1.2em;
+        font-weight: bold;
+        text-align: right;
+        padding: 20px 0;
+      }
+
+      button.pay-button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        margin-top: 20px;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      button.pay-button:hover {
+        background-color: #c82333;
+        transform: scale(1.05);
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        padding: 40px 0;
+      }
+
+      .footer-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-section {
+        flex: 1;
+        min-width: 250px;
+        margin: 10px;
+      }
+
+      .footer-section h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 10px;
+      }
+
+      .footer-section p,
+      .footer-section ul {
+        margin-bottom: 10px;
+        line-height: 1.6;
+      }
+
+      .footer-section ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-section ul li a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-section ul li a:hover {
+        color: #0056b3;
+      }
+
+      .footer-section p {
+        color: #ccc;
+      }
+      /* CSS cho form đặt hàng */
+      .main-content {
+  display: flex;
+  justify-content: space-between; /* Đặt giỏ hàng và form đặt hàng nằm ở hai bên */
+  gap: 20px; /* Khoảng cách giữa giỏ hàng và form đặt hàng */
+  align-items: flex-start; /* Căn chỉnh phần tử ở đầu */
+}
+
+
+.cart-table input {
+  height: 30px;
+        width: 60px;
+        text-align: center;
+      }
+      .pay-button {
+    display: inline-block; /* Đảm bảo nút hiển thị đúng cách */
+    padding: 12px 24px; /* Khoảng cách bên trong nút */
+    font-size: 16px; /* Kích thước chữ */
+    font-weight: bold; /* Chữ đậm */
+    color: #fff; /* Màu chữ trắng */
+    background-color: #007bff; /* Màu nền nút (xanh dương) */
+    border: 2px solid #007bff; /* Đường viền nút màu xanh dương */
+    border-radius: 5px; /* Bo góc nút */
+    text-align: center; /* Canh giữa chữ */
+    text-decoration: none; /* Bỏ gạch chân liên kết */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Hiệu ứng chuyển màu nền và viền khi di chuột */
+    cursor: pointer; /* Thay đổi con trỏ khi di chuột qua nút */
+}
+
+.pay-button:hover {
+    background-color: #0056b3; /* Màu nền khi di chuột qua nút (xanh đậm) */
+    border-color: #0056b3; /* Màu viền khi di chuột qua nút (xanh đậm) */
+}
+
+.pay-button:active {
+    background-color: #003d7a; /* Màu nền khi nhấn nút (xanh đậm hơn) */
+    border-color: #003d7a; /* Màu viền khi nhấn nút (xanh đậm hơn) */
+}
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <h1>Cửa Hàng Giày Sneaker</h1>
+        <nav>
+          <ul>
+            <li><a href="trang_chu.html">Trang Chủ</a></li>
+            <li><a href="san_pham.html">Sản Phẩm</a></li>
+            <li><a href="gio_hang.html">Giỏ Hàng</a></li>
+            <li><a href="dang_nhap.html">Đăng Nhập</a></li>
+            <li><a href="dang_ky.html">Đăng Ký</a></li>
+            <li><a href="bando.html">Địa Chỉ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div id="cart-container" class="cart-list"></div>
+      
+    </main>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    
+              
+           
+          
+             
+          
+              <footer>
+                <div class="footer-container">
+                  <div class="footer-section about">
+                    <h2>VỀ CHÚNG TÔI</h2>
+                    <p>
+                      Công ty TNHH MTV Thương Mại Thời Trang Tổng Hợp (GTF) Văn phòng: Số
+                      163, Phan Đăng Lưu, Phường 01, Phú Nhuận, Hồ Chí Minh, Việt Nam
+                    </p>
+                  </div>
+                  <div class="footer-section contact">
+                    <h2>LIÊN HỆ</h2>
+                    <p>
+                      Địa chỉ kho: 14 Đường Phan Đăng Lưu, Khu phố 7, Phường Long Bình,
+                      TP. Biên Hòa, Tỉnh Đồng Nai
+                    </p>
+                    <p>Tổng đài: 1900 63 64 01</p>
+                    <p>
+                      Mã số Doanh Nghiệp: 0314635071, đăng ký thay đổi ngày 20 tháng 04
+                      năm 2020
+                    </p>
+                  </div>
+                  <div class="footer-section links">
+                    <h2>THÔNG TIN</h2>
+                    <ul>
+                      <li><a href="#">Giới thiệu</a></li>
+                      <li><a href="#">Hệ thống cửa hàng</a></li>
+                      <li><a href="#">Thông tin liên hệ</a></li>
+                      <li><a href="#">Các điều khoản và điều kiện</a></li>
+                    </ul>
+                  </div>
+                  <div class="footer-section support">
+                    <h2>HỖ TRỢ KHÁCH HÀNG</h2>
+                    <ul>
+                      <li><a href="#">Chính sách giao hàng</a></li>
+                      <li><a href="#">Chính sách đổi trả hàng - Bảo hành</a></li>
+                      <li><a href="#">Chính sách trả góp</a></li>
+                      <li><a href="#">Chính sách bảo mật</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </footer>
+            </body>
+          </html>
+          
+          
+  </body>
+</html>

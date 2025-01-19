@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sản Phẩm</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      header {
+        background-color: #333;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+      }
+
+      header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f0f0f0;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      header {
+        background-color: peru;
+        color: white;
+        padding: 20px 0;
+      }
+
+      header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h1 {
+        font-size: 2em;
+        margin: 0;
+        color: black;
+        text-align: center;
+      }
+
+      header h1:hover {
+        color: white;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        text-align: center;
+        left: 170px;
+        position: relative;
+        height: 100px;
+        top: 30px;
+      }
+
+      nav ul li {
+        margin: 0;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        font-size: 20px;
+        border: 3px dotted red;
+        border-radius: 30px;
+        box-shadow: 8px 5px 5px black;
+      }
+
+      nav ul li a:hover {
+        background-color: #555;
+      }
+
+      main {
+        padding: 20px;
+        text-align: center;
+      }
+
+      .product-list {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        gap: 20px;
+        overflow-x: auto; /* Để có thể cuộn ngang nếu cần */
+        padding: 20px 0;
+      }
+
+      .product-item {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 250px;
+        text-align: center;
+        transition: transform 0.3s;
+        flex: 0 0 auto; /* Để giữ chiều rộng cố định */
+      }
+
+      .product-item:hover {
+        transform: scale(1.05);
+      }
+
+      .product-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px 10px 0 0;
+        transition: transform 0.3s;
+      }
+
+      .product-item img:hover {
+        transform: scale(1.1);
+      }
+
+      .product-item h3 {
+        margin: 15px 0 10px;
+        font-size: 1.2em;
+      }
+
+      .product-item p {
+        font-size: 0.9em;
+        color: #555;
+      }
+
+      .product-item button {
+        background-color: burlywood;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        border-radius: 20px;
+      }
+
+      .product-item button:hover {
+        background-color: bisque;
+        color: black;
+        font-weight: bold;
+      }
+
+      .product-1 {
+        box-shadow: 5px 5px 5px black;
+        border-radius: 30px;
+      }
+
+      .product-2 {
+        box-shadow: 5px 5px 5px black;
+        border-radius: 30px;
+      }
+
+      .product-3 {
+        box-shadow: 5px 5px 5px black;
+        border-radius: 30px;
+      }
+
+      .product-4 {
+        box-shadow: 5px 5px 5px black;
+        border-radius: 30px;
+      }
+
+      .product-5 {
+        box-shadow: 5px 5px 5px black;
+        border-radius: 30px;
+      }
+
+      .product-6 {
+        box-shadow: 5px 5px 5px black;
+        border-radius: 30px;
+      }
+
+      .product-1 img {
+        border: 2px solid #ff0000;
+      }
+
+      .product-2 img {
+        border: 2px solid #00ff00;
+      }
+
+      .product-3 img {
+        border: 2px solid #0000ff;
+      }
+
+      .product-4 img {
+        border: 2px solid #ffff00;
+      }
+
+      .product-5 img {
+        border: 2px solid #ff00ff;
+      }
+
+      .product-6 img {
+        border: 2px solid #00ffff;
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        padding: 40px 0;
+      }
+
+      .footer-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-section {
+        flex: 1;
+        min-width: 250px;
+        margin: 10px;
+      }
+
+      .footer-section h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 10px;
+      }
+
+      .footer-section p,
+      .footer-section ul {
+        margin-bottom: 10px;
+        line-height: 1.6;
+      }
+
+      .footer-section ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-section ul li a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-section ul li a:hover {
+        color: #0056b3;
+      }
+
+      .footer-section p {
+        color: #ccc;
+      }
+      strong {
+        color: red;
+        font-size: 20px;
+      }
+      main h2 img {
+        width: 30px; /* Điều chỉnh kích thước biểu tượng giỏ hàng */
+        height: 30px; /* Điều chỉnh kích thước biểu tượng giỏ hàng */
+        margin-right: 10px; /* Khoảng cách giữa biểu tượng và tiêu đề */
+      }
+
+      main h2 {
+        display: flex;
+        align-items: center; /* Căn giữa biểu tượng và tiêu đề */
+        font-size: 35px;
+        color: steelblue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <h1>Cửa Hàng Giày Sneaker</h1>
+        <nav>
+          <ul>
+            <li><a href="trang_chu.html">Trang Chủ</a></li>
+            <li><a href="san_pham.html">Sản Phẩm</a></li>
+            <li><a href="gio_hang.html">Giỏ Hàng</a></li>
+            <li><a href="dang_nhap.html">Đăng Nhập</a></li>
+            <li><a href="dang_ky.html">Đăng Ký</a></li>
+            <li><a href="bando.html">Địa Chỉ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+        <h2
+        style="
+          font-size: 35px;
+          color: steelblue;
+          display: flex;
+          align-items: center;
+          left: 200px;
+        "
+      >
+        <a href="gio_hang.html" style="margin-right: 800px;">
+          <i class="fas fa-shopping-cart" style="font-size: 40px; left: 1900px;position: relative;" ></i>
+        </a>
+        Sản Phẩm Thịnh Hành
+      </h2>
+      <br />
+      <div class="product-list" id="product-list">
+        <div class="product-item product-1">
+          <img src="/HinhAnh/thinhhanh2.jpg" alt="Sản Phẩm 1" />
+          <h3>Adidas Yeezy Boost</h3>
+          <p>Thiết kế độc đáo của Kanye West, thoải mái và phong cách.</p>
+          <p><strong>Giá: 2,500,000 VND</strong></p>
+          
+          <button 
+            onclick="addToCart('Adidas Yeezy Boost', 1, '2,500,000 VND', 'thinhhanh2.jpg')"
+          >
+            Thêm vào giỏ
+          </button>
+        </div>
+        <div class="product-item product-2">
+          <img src="/HinhAnh/giay14.jpeg" alt="Sản Phẩm 1" />
+          <h3>Nike Dunk Low</h3>
+          <p>Thiết kế độc đáo của Kanye West, thoải mái và phong cách.</p>
+          <p><strong>Giá: 2,500,000 VND</strong></p>
+          <button
+            onclick="addToCart('Nike Dunk Low', 1, '2,500,000 VND', 'giay14.jpeg')"
+          >
+            Thêm vào giỏ
+          </button>
+        </div>
+        <div class="product-item product-3">
+          <img src="/HinhAnh/thinhhanh3.jpg" alt="Sản Phẩm 3" />
+          <h3>Adidas X_Plrboost</h3>
+          <p>Thiết kế retro, êm ái, phong cách đường phố.</p>
+          <p><strong>Giá: 1,500,000 VND</strong></p>
+          <button
+            onclick="addToCart('Adidas X_Plrboost', 1, '1,500,000 VND', 'thinhhanh3.jpg')"
+          >
+            Thêm vào giỏ
+          </button>
+        </div>
+        <div class="product-item product-4">
+          <img src="/HinhAnh/thinhhanh4.jpg" alt="Sản Phẩm 4" />
+          <h3>Puma RS-X</h3>
+          <p>Thiết kế retro, êm ái, phong cách đường phố.</p>
+          <p><strong>Giá: 4,500,000 VND</strong></p>
+          <button
+            onclick="addToCart('Puma RS-X', 1, '4,500,000 VND', 'thinhhanh4.jpg')"
+          >
+            Thêm vào giỏ
+          </button>
+        </div>
+        <div class="product-item product-5">
+          <img src="/HinhAnh/thinhhanh5.jpg" alt="Sản Phẩm 5" />
+          <h3>Converse Chuck</h3>
+          <p>Cổ điển, dễ phối đồ, phù hợp nhiều phong cách</p>
+          <p><strong>Giá: 1,500,000 VND</strong></p>
+          <button
+            onclick="addToCart('Converse Chuck', 1, '1,500,000 VND', 'thinhhanh5.jpg')"
+          >
+            Thêm vào giỏ
+          </button>
+        </div>
+        <div class="product-item product-6">
+          <img src="/HinhAnh/thinhhanh6.jpg" alt="Sản Phẩm 6" />
+          <h3>Vans Old Skool</h3>
+          <p>Phong cách skate, cổ điển, dễ phối đồ.</p>
+          <p><strong>Giá: 1,500,000 VND</strong></p>
+          <button
+            onclick="addToCart('Vans Old Skool', 1, '1,500,000 VND', 'thinhhanh6.jpg')"
+          >
+            Thêm vào giỏ
+          </button>
+        </div>
+      </div>
+      <br />
+      <div style="text-align: center">
+        <a href="chi_tiet_sp.html">
+          <button
+            style="
+              margin-top: 10px;
+              padding: 10px 150px;
+              font-size: 25px;
+              border-radius: 30px;
+              background-color: burlywood;
+            "
+          >
+            Xem thêm
+          </button></a
+        >
+      </div>
+    </main>
+    <br />
+    <div style="text-align: center">
+      <img src="/img/logo_aoo.jpg" alt="" style="display: inline-block" />
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <footer>
+      <div class="footer-container">
+        <div class="footer-section about">
+          <h2>VỀ CHÚNG TÔI</h2>
+          <p>
+            Công ty TNHH MTV Thương Mại Thời Trang Tổng Hợp (GTF) Văn phòng: Số
+            163, Phan Đăng Lưu, Phường 01, Phú Nhuận, Hồ Chí Minh, Việt Nam
+          </p>
+        </div>
+        <div class="footer-section contact">
+          <h2>LIÊN HỆ</h2>
+          <p>
+            Địa chỉ kho: 14 Đường Phan Đăng Lưu, Khu phố 7, Phường Long Bình,
+            TP. Biên Hòa, Tỉnh Đồng Nai
+          </p>
+          <p>Tổng đài: 1900 63 64 01</p>
+          <p>
+            Mã số Doanh Nghiệp: 0314635071, đăng ký thay đổi ngày 20 tháng 04
+            năm 2020
+          </p>
+        </div>
+        <div class="footer-section links">
+          <h2>THÔNG TIN</h2>
+          <ul>
+            <li><a href="#">Giới thiệu</a></li>
+            <li><a href="#">Hệ thống cửa hàng</a></li>
+            <li><a href="#">Thông tin liên hệ</a></li>
+            <li><a href="#">Các điều khoản và điều kiện</a></li>
+          </ul>
+        </div>
+        <div class="footer-section support">
+          <h2>HỖ TRỢ KHÁCH HÀNG</h2>
+          <ul>
+            <li><a href="#">Chính sách giao hàng</a></li>
+            <li><a href="#">Chính sách đổi trả hàng - Bảo hành</a></li>
+            <li><a href="#">Chính sách trả góp</a></li>
+            <li><a href="#">Chính sách bảo mật</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+<script>
+  function addToCart(name, quantity, price, img) {
+    const formattedPrice = new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    }).format(price);
+
+    const product = {
+      name: name,
+      quantity: quantity,
+      price: price,
+      img: img,
+    };
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingProductIndex = cart.findIndex((p) => p.name === product.name);
+
+    if (existingProductIndex > -1) {
+      // Cập nhật số lượng nếu sản phẩm đã tồn tại
+      cart[existingProductIndex].quantity += product.quantity;
+    } else {
+      // Thêm sản phẩm mới vào giỏ hàng
+      cart.push(product);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("Sản phẩm đã được thêm vào giỏ hàng!");
+  }
+</script>

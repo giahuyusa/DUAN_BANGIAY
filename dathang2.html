@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Document</title>
+    <style>
+         * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f0f0f0;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      header {
+        background-color: peru;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+      }
+
+      header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h1 {
+        font-size: 2em;
+        margin: 0;
+        color: orange;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+      }
+
+      nav ul li {
+        position: relative;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 30px;
+        transition: background-color 0.3s, transform 0.3s;
+        font-size: 18px;
+        border: 3px dotted red;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        box-shadow: 5px 10px 10px black;
+      }
+
+      nav ul li a:hover {
+        background-color: #555;
+        transform: scale(1.05);
+      }
+
+      nav ul ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        display: none;
+        flex-direction: column;
+        background-color: #333;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      nav ul ul li a {
+        padding: 10px 15px;
+      }
+
+      nav ul li:hover > ul {
+        display: flex;
+      }
+
+      main {
+        padding: 20px;
+        text-align: center;
+      }
+
+      .cart-list {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: azure;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.3s, transform 0.3s;
+      }
+
+      .cart-list:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: scale(1.02);
+      }
+
+      .cart-item {
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      .cart-item:hover {
+        background-color: #f9f9f9;
+        transform: scale(1.02);
+      }
+
+      .cart-item h3 {
+        margin: 0;
+        font-size: 1.2em;
+      }
+
+      .cart-item p {
+        margin: 5px 0;
+        font-size: 0.9em;
+        color: #555;
+      }
+
+      .cart-item button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9em;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      .cart-item button:hover {
+        background-color: #c82333;
+        transform: scale(1.05);
+      }
+
+      .total {
+        font-size: 1.2em;
+        font-weight: bold;
+        text-align: right;
+        padding: 20px 0;
+      }
+
+      button.pay-button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        margin-top: 20px;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      button.pay-button:hover {
+        background-color: #c82333;
+        transform: scale(1.05);
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        padding: 40px 0;
+      }
+
+      .footer-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-section {
+        flex: 1;
+        min-width: 250px;
+        margin: 10px;
+      }
+
+      .footer-section h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 10px;
+      }
+
+      .footer-section p,
+      .footer-section ul {
+        margin-bottom: 10px;
+        line-height: 1.6;
+      }
+
+      .footer-section ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-section ul li a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-section ul li a:hover {
+        color: #0056b3;
+      }
+
+      .footer-section p {
+        color: #ccc;
+      }
+      /* CSS cho form đặt hàng */
+      .main-content {
+  display: flex;
+  justify-content: space-between; /* Đặt giỏ hàng và form đặt hàng nằm ở hai bên */
+  gap: 20px; /* Khoảng cách giữa giỏ hàng và form đặt hàng */
+  align-items: flex-start; /* Căn chỉnh phần tử ở đầu */
+}
+
+
+.cart-table input {
+  height: 30px;
+        width: 60px;
+        text-align: center;
+      }
+      /* Đặt lại CSS để đồng nhất giao diện */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Phong cách chung cho form */
+form {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề cho các phần trong form */
+form h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+    color: #333;
+}
+
+/* Các phần tử form */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Nhãn cho các trường input */
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* Các trường input và textarea */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Các trường input khi có lỗi */
+.error {
+    color: #dc3545;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+/* Các trường select và textarea */
+.form-group select,
+.form-group textarea {
+    height: auto;
+}
+
+/* Tổng tiền */
+.total-amount {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px;
+    text-align: right;
+}
+
+/* Nút đặt hàng */
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Kiểm tra các phần tử có checkbox */
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Định dạng cho các trường address */
+.address-fields {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.address-fields > div {
+    flex: 1;
+}
+/* Tăng kích thước của trường ngày giao hàng dự kiến */
+#deliveryDate {
+    font-size: 1.2em; /* Thay đổi kích thước chữ */
+    padding: 12px; /* Tăng khoảng cách bên trong */
+    border-radius: 6px; /* Tăng độ cong của viền */
+}
+
+/* Thay đổi màu phí vận chuyển thành đỏ */
+#soTienPhiVanChuyen {
+    color: #dc3545; /* Màu đỏ */
+    font-weight: bold; /* In đậm */
+}form .form-group label i {
+  margin-right: 10px;
+  color: #007bff;
+}
+
+.error {
+  color: #dc3545;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 20px;
+  transition: background-color 0.3s, transform 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button i {
+  margin-right: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+          <h1>Cửa Hàng Giày Sneaker</h1>
+          <nav>
+            <ul>
+              <li><a href="trang_chu.html">Trang Chủ</a></li>
+              <li><a href="san_pham.html">Sản Phẩm</a></li>
+              <li><a href="gio_hang.html">Giỏ Hàng</a></li>
+              <li><a href="dang_nhap.html">Đăng Nhập</a></li>
+              <li><a href="dang_ky.html">Đăng Ký</a></li>
+              <li><a href="bando.html">Địa Chỉ</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <form id="orderForm" onsubmit="validateForm(event)">
+        <h2>Thông tin cá nhân</h2>
+        <div class="form-group">
+          <label for="fullname"><i class="fas fa-user"></i> Họ và tên:</label>
+          <input type="text" id="fullname" name="fullname" required>
+          <div id="fullnameError" class="error"></div>
+        </div>
+        <div class="form-group">
+          <label for="phone"><i class="fas fa-phone"></i> Số điện thoại:</label>
+          <input type="text" id="phone" name="phone" required>
+          <div id="phoneError" class="error"></div>
+        </div>
+        <div class="form-group">
+          <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+          <input type="email" id="email" name="email" required>
+          <div id="emailError" class="error"></div>
+        </div>
+      
+        <h2>Địa chỉ giao hàng</h2>
+      
+        <div class="form-group address-fields">
+          <div>
+            <label for="ward"><i class="fas fa-map-marker-alt"></i> Phường/Xã:</label>
+            <input type="text" id="ward" name="ward" required>
+            <div id="wardError" class="error"></div>
+          </div>
+          <div>
+            <label for="district"><i class="fas fa-map-marker-alt"></i> Quận/Huyện:</label>
+            <input type="text" id="district" name="district" required>
+            <div id="districtError" class="error"></div>
+          </div>
+          <div>
+            <label for="city"><i class="fas fa-map-marker-alt"></i> Tỉnh/Thành phố:</label>
+            <input type="text" id="city" name="city" required>
+            <div id="cityError" class="error"></div>
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="paymentMethod"><i class="fas fa-credit-card"></i> Phương thức thanh toán:</label>
+          <select id="paymentMethod" name="paymentMethod" required>
+            <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+            <option value="bank">Chuyển khoản ngân hàng</option>
+            <option value="creditCard">Thẻ tín dụng</option>
+            <option value="eWallet">Ví điện tử</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="note"><i class="fas fa-sticky-note"></i> Ghi chú:</label>
+          <textarea id="note" name="note"></textarea>
+        </div>
+      
+        <h2>Thông tin giao hàng</h2>
+        <div class="form-group">
+          <label for="deliveryDate"><i class="fas fa-calendar-alt"></i> Ngày giao hàng dự kiến:</label>
+          <input type="date" id="deliveryDate" name="deliveryDate" required>
+          <div id="deliveryDateError" class="error"></div>
+        </div>
+        <div class="form-group">
+          <label for="phuongThucGiaoHang"><i class="fas fa-truck"></i> Phương thức giao hàng:</label>
+          <select id="phuongThucGiaoHang" name="phuongThucGiaoHang" required onchange="capNhatPhiVanChuyen()">
+            <option value="giaoNhanh">Giao nhanh</option>
+            <option value="giaoThuong">Giao thường</option>
+          </select>
+        </div>
+        
+        <div id="phiVanChuyen" class="form-group">
+          <label><i class="fas fa-shipping-fast"></i> Phí vận chuyển:</label>
+          <span id="soTienPhiVanChuyen">0 VNĐ</span>
+        </div>
+      
+        <div class="form-group">
+          <label for="terms">
+            <input type="checkbox" name="terms" required>
+            <i class="fas fa-check-circle"></i> Tôi đồng ý với các điều khoản và điều kiện mua hàng.
+          </label>
+        </div>
+        
+        <button type="submit"><i class="fas fa-shopping-cart"></i> Đặt hàng</button>
+      </form>
+      
+     
+                
+             
+            
+               
+            
+                <footer>
+                  <div class="footer-container">
+                    <div class="footer-section about">
+                      <h2>VỀ CHÚNG TÔI</h2>
+                      <p>
+                        Công ty TNHH MTV Thương Mại Thời Trang Tổng Hợp (GTF) Văn phòng: Số
+                        163, Phan Đăng Lưu, Phường 01, Phú Nhuận, Hồ Chí Minh, Việt Nam
+                      </p>
+                    </div>
+                    <div class="footer-section contact">
+                      <h2>LIÊN HỆ</h2>
+                      <p>
+                        Địa chỉ kho: 14 Đường Phan Đăng Lưu, Khu phố 7, Phường Long Bình,
+                        TP. Biên Hòa, Tỉnh Đồng Nai
+                      </p>
+                      <p>Tổng đài: 1900 63 64 01</p>
+                      <p>
+                        Mã số Doanh Nghiệp: 0314635071, đăng ký thay đổi ngày 20 tháng 04
+                        năm 2020
+                      </p>
+                    </div>
+                    <div class="footer-section links">
+                      <h2>THÔNG TIN</h2>
+                      <ul>
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Hệ thống cửa hàng</a></li>
+                        <li><a href="#">Thông tin liên hệ</a></li>
+                        <li><a href="#">Các điều khoản và điều kiện</a></li>
+                      </ul>
+                    </div>
+                    <div class="footer-section support">
+                      <h2>HỖ TRỢ KHÁCH HÀNG</h2>
+                      <ul>
+                        <li><a href="#">Chính sách giao hàng</a></li>
+                        <li><a href="#">Chính sách đổi trả hàng - Bảo hành</a></li>
+                        <li><a href="#">Chính sách trả góp</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </footer>
+</body>
+</html>
+<script>
+    function validateForm(event) {
+    event.preventDefault(); // Ngăn không gửi form nếu có lỗi
+    
+    let isValid = true;
+
+    // Lấy giá trị của các trường
+    const fullname = document.getElementById('fullname').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
+   
+
+    
+
+    // Kiểm tra họ và tên
+    const fullnameError = document.getElementById('fullnameError');
+    const fullnamePattern = /^[a-zA-Z\s]+$/; // Chỉ cho phép chữ cái và khoảng trắng
+    if (!fullname || !fullname.match(fullnamePattern)) {
+      fullnameError.textContent = 'Họ và tên không được chứa số, ký tự đặc biệt và không được để trống.';
+      isValid = false;
+    } else {
+      fullnameError.textContent = '';
+    }
+
+    // Kiểm tra số điện thoại
+    const phoneError = document.getElementById('phoneError');
+    if (/\s/.test(phone)) {
+      phoneError.textContent = 'Số điện thoại không được chứa khoảng trắng.';
+      isValid = false;
+    } else if (!/^[0-9]+$/.test(phone)) {
+      phoneError.textContent = 'Số điện thoại không được chứa ký tự đặc biệt và chữ cái.';
+      isValid = false;
+    } else if (phone.length < 10 || phone.length > 11) {
+      phoneError.textContent = 'Số điện thoại phải có từ 10 đến 11 chữ số.';
+      isValid = false;
+    } else if (phone[0] !== '0') {
+      phoneError.textContent = 'Số điện thoại phải bắt đầu bằng số 0.';
+      isValid = false;
+    } else {
+      phoneError.textContent = '';
+    }
+
+    // Kiểm tra email
+    const emailError = document.getElementById('emailError');
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Định dạng email cơ bản
+    if (!email.match(emailPattern)) {
+      emailError.textContent = 'Địa chỉ email không hợp lệ.';
+      isValid = false;
+    } else {
+      emailError.textContent = '';
+    }
+
+    // Kiểm tra địa chỉ giao hàng
+    const minLength = 4; // Ví dụ: độ dài tối thiểu là 2 ký tự
+    const maxLength = 50; // Ví dụ: độ dài tối đa là 50 ký tự
+
+    const ward = document.getElementById('ward').value.trim();
+    const district = document.getElementById('district').value.trim();
+    const city = document.getElementById('city').value.trim();
+
+    // Kiểm tra Phường/Xã
+    const wardError = document.getElementById('wardError');
+    const locationPattern = /^[\p{L}\s]+$/u;
+    if (!ward) {
+      wardError.textContent = 'Phường/Xã không được để trống.';
+      isValid = false;
+    } else if (!locationPattern.test(ward)) {
+      wardError.textContent = 'Phường/Xã không được chứa ký tự đặc biệt và số.';
+      isValid = false;
+    } else if (ward.length < minLength || ward.length > maxLength) {
+      wardError.textContent = `Phường/Xã phải có độ dài từ ${minLength} đến ${maxLength} ký tự.`;
+      isValid = false;
+    } else {
+      wardError.textContent = '';
+    }
+
+    // Kiểm tra Quận/Huyện
+    const districtError = document.getElementById('districtError');
+    if (!district) {
+      districtError.textContent = 'Quận/Huyện không được để trống.';
+      isValid = false;
+    } else if (!district.match(locationPattern)) {
+      districtError.textContent = 'Quận/Huyện không được chứa ký tự đặc biệt và số.';
+      isValid = false;
+    } else if (district.length < minLength || district.length > maxLength) {
+      districtError.textContent = `Quận/Huyện phải có độ dài từ ${minLength} đến ${maxLength} ký tự.`;
+      isValid = false;
+    } else {
+      districtError.textContent = '';
+    }
+
+    // Kiểm tra Tỉnh/Thành phố
+    const cityError = document.getElementById('cityError');
+    if (!city) {
+      cityError.textContent = 'Tỉnh/Thành phố không được để trống.';
+      isValid = false;
+    } else if (!city.match(locationPattern)) {
+      cityError.textContent = 'Tỉnh/Thành phố không được chứa ký tự đặc biệt và số.';
+      isValid = false;
+    } else if (city.length < minLength || city.length > maxLength) {
+      cityError.textContent = `Tỉnh/Thành phố phải có độ dài từ ${minLength} đến ${maxLength} ký tự.`;
+      isValid = false;
+    } else {
+      cityError.textContent = '';
+    }
+
+    // Nếu tất cả các trường hợp lệ, có thể gửi form
+    if (isValid) {
+      document.getElementById('orderForm').submit();
+    }
+  }
+
+  // Kết hợp cả hai hàm window.onload vào một hàm duy nhất
+  window.onload = function() {
+    // Thiết lập ngày giao hàng dự kiến
+    const deliveryDateInput = document.getElementById('deliveryDate');
+    if (deliveryDateInput) {
+      const today = new Date();
+      today.setDate(today.getDate() + 2); // Cộng thêm 2 ngày
+      const futureDate = today.toISOString().split('T')[0]; // Định dạng yyyy-mm-dd
+      deliveryDateInput.value = futureDate;
+    }
+
+   
+  };
+
+  // Cập nhật lại phí giao hàng
+  function capNhatPhiVanChuyen() {
+    const phuongThucGiaoHang = document.getElementById('phuongThucGiaoHang').value;
+    const phiVanChuyenElement = document.getElementById('soTienPhiVanChuyen');
+    
+    let phi;
+
+    if (phuongThucGiaoHang === 'giaoNhanh') {
+      phi = 50000;  // Phí giao nhanh
+    } else if (phuongThucGiaoHang === 'giaoThuong') {
+      phi = 20000;  // Phí giao thường
+    } else {
+      phi = 0;
+    }
+
+    phiVanChuyenElement.innerText = phi.toLocaleString('vi-VN') + ' VNĐ';
+  }
+
+
+
+  
+  // Gán hàm kiểm tra vào sự kiện submit của form
+  document.getElementById('orderForm').addEventListener('submit', validateForm);
+
+</script>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết sản phẩm</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      /* Reset CSS */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Global styles */
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #f7f7f7;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      /* Product detail styles */
+      .product-detail {
+        display: flex;
+        margin-bottom: 30px;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        top: 90px;
+        position: relative;
+      }
+
+      .product-image {
+        flex: 0 0 40%;
+        max-width: 40%;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+      }
+
+      .product-info {
+        flex: 1;
+        padding: 20px;
+      }
+
+      .product-info h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .original-price {
+        color: #999;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      .sale-price {
+        color: #d00;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .btn-buy,
+      .btn-add-to-cart {
+        background-color: burlywood;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-right: 10px;
+      }
+
+      .btn-buy:hover,
+      .btn-add-to-cart:hover {
+        background-color: orangered;
+      }
+
+      .note {
+        color: #666;
+        font-size: 14px;
+        margin-top: 10px;
+      }
+
+      .product-description {
+        margin-top: 20px;
+      }
+
+      .product-description h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .product-description p {
+        margin-bottom: 10px;
+      }
+
+      .product-description ul {
+        list-style-type: disc;
+        margin-left: 20px;
+      }
+
+      .product-description ul li {
+        margin-bottom: 5px;
+      }
+
+      @media (max-width: 768px) {
+        .product-detail {
+          flex-direction: column;
+        }
+
+        .product-image {
+          max-width: 100%;
+          flex: none;
+        }
+      }
+
+      /* Header and Footer styles */
+      header {
+        background-color: peru;
+        color: white;
+        padding: 0px 0;
+        text-align: center;
+      }
+
+      header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      header h1 {
+        font-size: 2em;
+        margin: 0;
+        color: black;
+        text-align: center;
+      }
+      header h1:hover {
+        color: white;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        text-align: center;
+      }
+
+      nav ul li {
+        margin: 0;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        font-size: 20px;
+        border: 3px dotted red;
+        border-radius: 30px;
+        box-shadow: 8px 5px 5px black;
+      }
+
+      nav ul li a:hover {
+        background-color: #555;
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        padding: 40px 0;
+      }
+
+      .footer-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-section {
+        flex: 1;
+        min-width: 250px;
+        margin: 10px;
+      }
+
+      .footer-section h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 10px;
+      }
+
+      .footer-section p,
+      .footer-section ul {
+        margin-bottom: 10px;
+        line-height: 1.6;
+      }
+
+      .footer-section ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-section ul li a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-section ul li a:hover {
+        color: #0056b3;
+      }
+
+      .footer-section p {
+        color: #ccc;
+      }
+      .product-info i.fas.fa-shopping-cart {
+  font-size: 40px; /* Điều chỉnh kích thước của biểu tượng */
+  left: 400px;
+  position: relative;
+}
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <h1>Cửa Hàng Quần Áo</h1>
+        <nav>
+          <ul>
+            <li><a href="trang_chu.html">Trang Chủ</a></li>
+            <li><a href="san_pham.html">Sản Phẩm</a></li>
+            <li><a href="gio_hang.html">Giỏ Hàng</a></li>
+            <li><a href="dang_nhap.html">Đăng Nhập</a></li>
+            <li><a href="dang_ky.html">Đăng Ký</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="product-detail">
+        <div class="product-image">
+          <img id="product-image" src="/HinhAnh/giay5.jpg" alt="AIRism Cotton Áo Polo Gài Nút"
+            onmouseover="changeImage('HinhAnh/ao3.jpg')" 
+            onmouseout="changeImage('/HinhAnh/giay5.jpg')" />
+        </div>
+        <div class="product-info">
+          <h1>Nike Air Force 1
+            <a href="gio_hang.html">
+              <i class="fas fa-shopping-cart" style="color: #d00; margin-left: 10px; cursor: pointer;"></i>
+            </a>
+          </h1>
+          <p class="original-price">Giá gốc: <span>800.000đ</span></p>
+          <p class="sale-price">Giá giảm: <span>650.000đ</span></p>
+          <button class="btn-buy" data-name="Nike Air Force 1" data-price="650.000đ" data-img="giay5.jpg">Mua ngay</button>
+          <button class="btn-add-to-cart" data-name="Nike Air Force 1" data-price="650.000đ" data-img="giay5.jpg">Thêm vào giỏ hàng</button>
+          <p class="note">* Sản phẩm có sẵn đủ size từ 36 đến 44</p>
+
+          <div class="product-description">
+            <h2>Mô tả sản phẩm</h2>
+            <p>
+              Ra mắt lần đầu năm 1982, Nike Air Force 1 là một trong những mẫu
+              giày mang tính biểu tượng nhất của Nike. Được biết đến với kiểu
+              dáng cổ điển và bền bỉ, giày Air Force 1 có đế giữa sử dụng công
+              nghệ Nike Air, mang lại sự êm ái và hỗ trợ tốt cho chân.
+            </p>
+            <ul>
+              <li>Chất liệu: 100% da</li>
+              <li>Form giày: Regular fit, cổ bẻ, gài nút</li>
+              <li>Phong cách: Thanh lịch, phù hợp với nhiều hoàn cảnh</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <footer>
+      <div class="footer-container">
+        <div class="footer-section about">
+          <h2>VỀ CHÚNG TÔI</h2>
+          <p>
+            Công ty TNHH MTV Thương Mại Thời Trang Tổng Hợp (GTF) Văn phòng: Số
+            163, Phan Đăng Lưu, Phường 01, Phú Nhuận, Hồ Chí Minh, Việt Nam
+          </p>
+        </div>
+        <div class="footer-section contact">
+          <h2>LIÊN HỆ</h2>
+          <p>
+            Địa chỉ kho: 14 Đường Phan Đăng Lưu, Khu phố 7, Phường Long Bình,
+            TP. Biên Hòa, Tỉnh Đồng Nai
+          </p>
+          <p>Tổng đài: 1900 63 64 01</p>
+          <p>
+            Mã số Doanh Nghiệp: 0314635071, đăng ký thay đổi ngày 20 tháng 04
+            năm 2020
+          </p>
+        </div>
+        <div class="footer-section links">
+          <h2>THÔNG TIN</h2>
+          <ul>
+            <li><a href="#">Giới thiệu</a></li>
+            <li><a href="#">Hệ thống cửa hàng</a></li>
+            <li><a href="#">Thông tin liên hệ</a></li>
+            <li><a href="#">Các điều khoản và điều kiện</a></li>
+          </ul>
+        </div>
+        <div class="footer-section support">
+          <h2>HỖ TRỢ KHÁCH HÀNG</h2>
+          <ul>
+            <li><a href="#">Chính sách giao hàng</a></li>
+            <li><a href="#">Chính sách đổi trả hàng - Bảo hành</a></li>
+            <li><a href="#">Chính sách trả góp</a></li>
+            <li><a href="#">Chính sách bảo mật</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+<script>
+  function changeImage(newSrc) {
+    document.getElementById('product-image').src = newSrc;
+  }
+
+  // Hàm để thêm sản phẩm vào giỏ hàng
+  function addToCart(name, price, img) {
+    // Lấy giỏ hàng từ localStorage hoặc tạo mới nếu chưa có
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+    // Kiểm tra nếu sản phẩm đã có trong giỏ hàng không
+    const existingProductIndex = cart.findIndex(item => item.name === name);
+  
+    if (existingProductIndex >= 0) {
+      // Nếu có, tăng số lượng
+      cart[existingProductIndex].quantity += 1;
+    } else {
+      // Nếu không, thêm mới vào giỏ hàng
+      cart.push({
+        name: name,
+        price: price,
+        img: img,
+        quantity: 1
+      });
+    }
+  
+    // Lưu giỏ hàng vào localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+  
+    alert('Sản phẩm đã được thêm vào giỏ hàng!');
+  }
+  
+  // Thêm sự kiện click cho nút "Mua ngay"
+  document.querySelectorAll('.btn-buy').forEach(button => {
+    button.addEventListener('click', function() {
+      const name = this.getAttribute('data-name');
+      const price = this.getAttribute('data-price');
+      const img = this.getAttribute('data-img');
+      
+      addToCart(name, price, img);
+    });
+  });
+  
+  // Thêm sự kiện click cho nút "Thêm vào giỏ hàng"
+  document.querySelectorAll('.btn-add-to-cart').forEach(button => {
+    button.addEventListener('click', function() {
+      const name = this.getAttribute('data-name');
+      const price = this.getAttribute('data-price');
+      const img = this.getAttribute('data-img');
+      
+      addToCart(name, price, img);
+    });
+  });
+ </script>

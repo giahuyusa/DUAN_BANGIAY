@@ -1,0 +1,186 @@
+/* icon dang nhap */
+.icon_username {
+  display: block;
+  background-image: url(/IMG/login_icon.png);
+  background-size: 18px;
+  background-position: 0px;
+  background-repeat: no-repeat;
+  padding: 0px 24px;
+  text-decoration: none;
+  color: orangered;
+  font-variant: small-caps;
+}
+
+.icon_password {
+  display: block;
+  background-image: url(/IMG/icon_password.png);
+  background-size: 18px;
+  background-position: 0px;
+  background-repeat: no-repeat;
+  padding: 0px 24px;
+  text-decoration: none;
+  color: orangered;
+  font-variant: small-caps;
+}
+.icon_mail {
+  display: block;
+  background-image: url(/IMG/icon_mail.png);
+  background-size: 18px;
+  background-position: 0px;
+  background-repeat: no-repeat;
+  padding: 0px 24px;
+  text-decoration: none;
+  color: orangered;
+  font-variant: small-caps;
+}
+.icon_dien_thoai {
+  display: block;
+  background-image: url(/IMG/icon_dt.png);
+  background-size: 18px;
+  background-position: 0px;
+  background-repeat: no-repeat;
+  padding: 0px 24px;
+  text-decoration: none;
+  color: orangered;
+  font-variant: small-caps;
+}
+.icon_xac_nhan_mat_khau {
+  display: block;
+  background-image: url(/IMG/xacnhan.png);
+  background-size: 18px;
+  background-position: 0px;
+  background-repeat: no-repeat;
+  padding: 0px 24px;
+  text-decoration: none;
+  color: orangered;
+  font-variant: small-caps;
+}
+/* menu con */
+/* Menu con */
+.menu ul ul {
+  position: absolute;
+  display: none;
+  list-style: none;
+  width: 158px;
+  box-shadow: 0 0 2px gray;
+  background-color: white;
+  border-radius: 3px;
+  text-align: center;
+  z-index: 2;
+  font-style: italic;
+}
+
+.menu ul ul li {
+  display: block;
+}
+
+.menu ul ul a {
+  display: block;
+  color: coral;
+  text-decoration: none;
+  font-size: 20px;
+  font-variant: small-caps;
+  padding: 10px 10px;
+  line-height: 50px;
+}
+
+.menu ul ul a:hover {
+  color: red;
+  background-color: aquamarine;
+}
+
+.menu ul li:hover ul {
+  display: block;
+}
+
+.menu ul li a:hover {
+  background-color: blue;
+  color: aquamarine;
+  text-shadow: 0 0 3px red;
+  border-radius: 13px;
+}
+.menu ul ul li a:hover {
+  background-color: blue;
+  color: azure;
+  text-shadow: 0 0 3px red;
+  border-radius: 13px;
+}
+/* giảm giá */
+/* CSS cho phần giảm giá và form */
+
+.sale-form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sale-form h1 {
+  text-align: center;
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.sale-form form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.sale-form .product {
+  width: 45%;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.sale-form .product img {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.sale-form .product .details {
+  padding: 10px 20px;
+}
+
+.sale-form .product h2 {
+  font-size: 1.5em;
+  color: #007bff;
+  margin-top: 10px;
+}
+
+.sale-form .product p {
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.sale-form .product .original-price {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 0.9em;
+}
+
+.sale-form .product .sale-price {
+  color: #ff5722;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+@media (max-width: 768px) {
+  .sale-form .product {
+    width: 100%;
+  }
+}
+.product img {
+  transition: transform 0.3s ease; /* Hiệu ứng chuyển động */
+  cursor: pointer; /* Con trỏ chuột thành dấu nhấp chuột */
+}
+
+.product img:hover {
+  transform: scale(1.1); /* Phóng to hình ảnh khi rê chuột vào */
+}
